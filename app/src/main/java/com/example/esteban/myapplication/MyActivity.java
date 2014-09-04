@@ -6,12 +6,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 
 
 public class MyActivity extends Activity {
 
-    int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,17 +39,16 @@ public class MyActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void cambiarNombre(View view){
+    public void saludar(View view){
         final TextView textoLoco = (TextView) findViewById(R.id.textView);
-        final TextView botonLoco = (Button) findViewById(R.id.botonLoco);
-        if ((i%2)==0){
-            botonLoco.setText("Hola");
-            textoLoco.setText("Hola mundo PAPAAA "+i);
-            i++;
+        final Button botonLoco = (Button) findViewById(R.id.botonLoco);
+        final Switch esEspaniol = (Switch) findViewById(R.id.switch1);
+        if (esEspaniol.isChecked()){
+            botonLoco.setText("Saludar");
+            textoLoco.setText("Hola mundo!");
         }else{
-            botonLoco.setText("Hello");
-            textoLoco.setText("Hello world! "+i);
-            i++;
+            botonLoco.setText("Greets");
+            textoLoco.setText("Hello world!");
         }
     }
 
