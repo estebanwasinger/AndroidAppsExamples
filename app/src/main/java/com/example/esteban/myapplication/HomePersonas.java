@@ -7,7 +7,7 @@ import java.util.List;
  * Clase para un Home de Personas
  * ------------------------------
  * <p/>
- * Acá se van a guardar temporalmente todas las personas que se creen en vez de usar una DB
+ * Acá se van a guardarPersona temporalmente todas las personas que se creen en vez de usar una DB
  * <p/>
  * Created by esteban on 06/09/14.
  */

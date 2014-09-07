@@ -89,7 +89,7 @@
             android:layout_row="4"
             android:layout_column="0"
             android:layout_columnSpan="2"
-            android:onClick="guardar" />
+            android:onClick="guardarPersona" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -1,6 +1,8 @@
 package com.example.esteban.myapplication;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MyActivity extends Activity {
@@ -42,46 +45,48 @@ public class MyActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void guardar(View view) {
+    public void guardarPersona(View view) {
         final EditText nombre = (EditText) findViewById(R.id.eTNombre);
         final EditText apellido = (EditText) findViewById(R.id.eTApellido);
         final EditText edad = (EditText) findViewById(R.id.eTEdad);
         final EditText nacionalidad = (EditText) findViewById(R.id.eTnacionalidad);
 
         String nombreString = nombre.getText().toString();
+        if (!validarString(nombreString)) {
+            mostrarToast("Nombre ingresado incorrecto");
+            nombre.setBackgroundColor(Color.RED);
+            return;
+        }
         String apellidoString = apellido.getText().toString();
+        if (!validarString(apellidoString)) {
+            mostrarToast("Apellido ingresado incorrecto");
+            return;
+        }
         Integer edadInt = Integer.parseInt(edad.getText().toString());
         String nacionalidadString = nacionalidad.getText().toString();
+        if (!validarString(nacionalidadString)) {
+            mostrarToast("Nacionalidad ingresado incorrecto");
+            return;
+        }
 
         homePersonas.addPersona(new Persona(edadInt, nombreString, apellidoString, nacionalidadString));
         ((TextView) findViewById(R.id.textView)).setText(homePersonas.size().toString());
         final ListView listaPersonas = (ListView) findViewById(R.id.listView2);
+
     }
 
-    public void saludar(View view){
-//        final TextView textoLoco = (TextView) findViewById(R.id.textView);
-//        final Button botonLoco = (Button) findViewById(R.id.botonLoco);
-//        final Switch esEspaniol = (Switch) findViewById(R.id.switch1);
-//        homePersonas.addPersona(new Persona(21,"Esteban","Wasinger","Argentina"));
-//        String string = getString(R.string.espaniol);
-//        if (esEspaniol.isChecked()){
-//            esEspaniol.setText("ESPAÑOOOOOOL");
-//            string = "ESPAÑOOOOOL";
-//            botonLoco.setText("Saludar");
-//            textoLoco.setText("Hola mundo!");
-//        }else{
-//            botonLoco.setText("Greets");
-//            textoLoco.setText("Hello world!");
-//        }
+    private boolean validarString(String string) {
+        if (string == "" || string.length() == 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
-    public void saludar2(View view) {
-//        //final Switch esEspaniol = (Switch) findViewById(R.id.switch1);
-//        if (esEspaniol.isChecked()){
-//            esEspaniol.setText("Español");}
-//        else{
-//            esEspaniol.setText("Ingles");
-//        }
+    private void mostrarToast(String string) {
+        Context context = getApplicationContext();
+        Toast toast = Toast.makeText(context, string, Toast.LENGTH_SHORT);
+        toast.show();
     }
 
 
